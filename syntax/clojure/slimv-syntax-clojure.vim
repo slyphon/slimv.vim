@@ -15,16 +15,17 @@
 if exists("b:current_syntax")
   finish
 endif
+let b:current_syntax = 1
 
 " XXX: this is a real hack-job to get vimclojure highlighting 
 " I don't like rainbow parens (they're hard to see w/ desert256) so
 " I haven't included them
 "
-echomsg "Sourcing slimv-syntax-clojure.vim"
+"echomsg "Sourcing slimv-syntax-clojure.vim"
 
 if slimv#UseVimClojureHighlighting != 0
 
-    echomsg "Sourcing vimclojure syntax stuff"
+"    echomsg "Sourcing vimclojure syntax stuff"
 
     function! s:ColorNamespace(highlights)
         for [category, words] in items(a:highlights)
@@ -226,9 +227,9 @@ if slimv#UseVimClojureHighlighting != 0
     syn sync fromstart
 
     if version >= 600
-        command -nargs=+ HiLink highlight default link <args>
+        command! -nargs=+ HiLink highlight default link <args>
     else
-        command -nargs=+ HiLink highlight         link <args>
+        command! -nargs=+ HiLink highlight         link <args>
     endif
 
     HiLink clojureConstant  Constant
@@ -262,7 +263,7 @@ if slimv#UseVimClojureHighlighting != 0
     HiLink clojureParen0    Delimiter
 
 else " using slimv impl
-    echomsg "using slimv implementation"
+"    echomsg "using slimv implementation"
 
     " Clojure keywords not defined by lisp.vim
     syn keyword lispFunc def defmulti defn defonce defprotocol doall dorun doseq dosync doto
