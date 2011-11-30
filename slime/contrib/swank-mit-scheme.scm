@@ -113,7 +113,8 @@
 
 (define (netcat port)
   (let* ((sh (os/shell-file-name))
-	 (cmd (format #f "exec netcat -v -q 0 -l ~a 2>&1" port))
+;         (cmd (format #f "exec netcat -v -q 0 -l ~a 2>&1" port))
+	 (cmd (format #f "exec nc -l ~a 2>&1" port))
 	 (netcat (start-pipe-subprocess sh 
 					(vector sh "-c" cmd)
 					scheme-subprocess-environment)))
